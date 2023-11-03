@@ -9,13 +9,48 @@
 void sendRequestByWiFi(const char* ssid, const char* password, const String urlServer);  // GET by WiFi
 void sendCommand(String myCommand, long baudSerial, long baudSerial2);                   // send AT command_1
 void myWiFiConnexion(const char* ssid, const char* password);                            // Connexion WiFi
+void sendMessage(const char* numero, const char* texte);
 void byWiFi_HTTP(const String urlServer);                                                // Init HTT by WiFi
 void sendRequestByGSM(const char* url);                                                  // GET by GSM
 void sendCommand(String myCommand);                                                      // send AT command_1
+void readMessage();
 void readByteSerial2();                                                                  //Read all byte
 void initHttpGMS();                                                                      // Init GSM --> APN
 void closeGSM();                                                                         // Close GSM
 void getMAC();                                                                           // Get MAC
+
+//-----------------------FONCTION POUR LES AT COMMANDES - D E B U T ----------------------------//
+
+bool sendCommand(String myCommand, long baudSerial, long baudSerial2, const char* expectedResponse, unsigned long timeout) {
+  int TX = 16;
+  int RX = 17;
+  Serial.begin(baudSerial);
+  Serial2.begin(baudSerial2, SERIAL_8N1, TX, RX);
+
+  Serial.println("Starting...");
+  Serial2.println(myCommand);
+
+  unsigned long startTime = millis();
+  while (millis() - startTime < timeout) {
+    if (Serial.available()) {
+      String response = Serial.readString();
+      if (response.indexOf(expectedResponse) != -1) {
+        return true;  // Réponse attendue trouvée
+      }
+    }
+  }
+  return false;  // La réponse attendue n'a pas été trouvée dans le délai imparti
+}
+
+void sendCommand(String myCommand, const char* expectedResponse, unsigned long timeout) {
+  sendCommand(myCommand, 9600, 115200, expectedResponse, timeout);
+}
+
+//3eme fonction de sendCommand definissant la reponse par defaut attendue "OK" et le temps d'attente 3s
+void sendCommand(String myCommand) {
+  sendCommand(myCommand, "OK", 3000);  // Valeurs par défaut pour l'attente "OK"
+}
+//---------------------------FONCTION POUR LES AT COMMANDES - F I N  ------------------------------//
 
 //--------------------------------------D  E  B  U  T  -- G  S  M -------------------------------------//
 //1. Fontion d'initialisation de la communication GSM --> APN SFR France "sl2sfr"
@@ -29,18 +64,14 @@ void initHttpGMS() {
 //1. Fontion principale d'envoie de la requete HTTP --> GET via GSM
 void sendRequestByGSM(const char* url) {
   initHttpGMS();                         //Initialisation
-  delay(3000);                           //Attendre fin de l'initialisation
   sendCommand("AT+HTTPINIT");            // Initialisation
   sendCommand("AT+HTTPPARA=\"CID\",1");  // Set parameters for HTTP session
   String urlCommand = "AT+HTTPPARA=\"URL\",\"";
   urlCommand += url;
   urlCommand += "\"";
   sendCommand(urlCommand.c_str());  // GET Data
-  delay(1000);
   sendCommand("AT+HTTPACTION=0");   // GET session start / GET successfully
-  delay(1000);
   sendCommand("AT+HTTPREAD");  // Read the data of HTTP server
-  delay(10000);
 }
 
 //-- FONCTION CLOSE GSM COMM
@@ -111,22 +142,6 @@ void byWiFi_HTTP(const String urlServer) {
 }
 //----------------------------------- F  I  N  -- W i  F  i -------------------------------//
 
-//
-void sendCommand(String myCommand, long baudSerial, long baudSerial2) {
-  int TX = 16;
-  int RX = 17;
-  Serial.begin(baudSerial);
-  Serial2.begin(baudSerial2, SERIAL_8N1, TX, RX);
-
-  Serial.println("Starting...");
-  Serial2.println(myCommand);
-  delay(500);
-}
-
-void sendCommand(String myCommand) {
-  sendCommand(myCommand, 9600, 115200);  //AJOUT DES PARAMETRES PAR DEFAUT
-}
-//--------------------------------------------------------------------------//
 //<<---FONCTION POUR LIRE TOUS LES BYTES DISPONIBLES SUR LE PORT SERIAL2-->>
 void readByteSerial2() {
   while (Serial2.available()) {
@@ -143,7 +158,7 @@ void sendMessage(const char* numero, const char* texte) {
   command += numero;
   command += "\"";
   sendCommand(command);
-  delay(1000);
+  //delay(1000);
 
   Serial2.print(texte);
   //sendCommand(texte);

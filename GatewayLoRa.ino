@@ -5,6 +5,7 @@ void setup() {
   //myWiFiConnexion("Network", "unefoisoui@23");
   //sendRequestByWiFi("Network","unefoisoui@23","http://rucher.polytech.unice.fr/~cpeter/exemple.html");
   sendRequestByGSM("http://rucher.polytech.unice.fr/~cpeter/exemple.html");
+  //initHttpGMS();
 }
 
 void loop() {

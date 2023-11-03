@@ -30,7 +30,7 @@ des deux cartes qui à 5V chacune.
 3. PROTOCOLE ET BROCHAGE
 ------------------------
 Protocole: UART
-Connexion: ESP32 ============> SIM7000
+Connexion: ESP32 ============> SIM7000G
            5V    ------------> V
            GND   ------------> G
            16    ------------> T //RX to TX
