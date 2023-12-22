@@ -74,5 +74,6 @@ C. void sendRequestByGSM(const char* url):
    f. Fermeture du protocole HTTP
 
 7. ETAPES SCHEMATICS
---------------------
+---------------------
 C'est cette etape nous devons commencer maintenant.....
+La partie shematic est terminee et nous avons commence le routage le 22 Dec 2023
