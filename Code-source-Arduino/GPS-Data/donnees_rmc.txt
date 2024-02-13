@@ -1,0 +1,7 @@
+Heure: 3
+Statut: 1
+Latitude: 0.09
+Longitude: 0.18
+Vitesse: 33.0 nœuds
+Route: 19.0 degrés
+Date: 55
