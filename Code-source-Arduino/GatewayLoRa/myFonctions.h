@@ -31,25 +31,31 @@ void satellite_GPS(){
 
 //-----------------------FONCTION POUR LES AT COMMANDES - D E B U T ----------------------------//
 
-bool sendCommand(String myCommand, long baudSerial, long baudSerial2, const char* expectedResponse, unsigned long timeout) {
+String sendCommand(String myCommand, long baudSerial, long baudSerial2, const char* expectedResponse, unsigned long timeout) {
   int TX = 16;
   int RX = 17;
+  String response = "";
   Serial.begin(baudSerial);
   Serial2.begin(baudSerial2, SERIAL_8N1, TX, RX);
 
   Serial.println("Starting...");
+  Serial.print("myCommand ");Serial.println(myCommand);
   Serial2.println(myCommand);
 
   unsigned long startTime = millis();
+  Serial.println(startTime);
   while (millis() - startTime < timeout) {
-    if (Serial.available()) {
-      String response = Serial.readString();
+    if (Serial2.available()) {
+      response = Serial2.readString();
+      Serial.print("response ---"); Serial.println(response);Serial.print("---");
       if (response.indexOf(expectedResponse) != -1) {
-        return true;  // Réponse attendue trouvée
+        Serial.println("j ai trouve OK");
+        return response;  // Réponse attendue trouvée
       }
     }
   }
-  return false;  // La réponse attendue n'a pas été trouvée dans le délai imparti
+  Serial.println("timeout");
+  return response;  // La réponse attendue n'a pas été trouvée dans le délai imparti
 }
 
 void sendCommand(String myCommand, const char* expectedResponse, unsigned long timeout) {

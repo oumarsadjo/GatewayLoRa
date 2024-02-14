@@ -13,7 +13,7 @@ void setup() {
       const char * ssid
       const char * password
       const String urlServer */
-  
+  //sendCommand("AT");
   //3. Acceder et parser un sie web par LTE --> GET/POST
   //sendRequestByGSM("http://rucher.polytech.unice.fr/~cpeter/exemple.html");
   /*Parameters:
@@ -23,10 +23,11 @@ void setup() {
   //4. Trouver une location en parsant les satellites de localisation
   //satellite_GPS();
   
-  /*
+  
   String a = "AT+CGNSPWR=1";// Activation de la communication
-  String b = "AT+CGNSINF"; // Fixation des donnees des Satellites
-  sendCommand(b); */
+  String b = "AT+CGNSINF"; // Fixation des donnees des Satellites*/
+  sendCommand(a,"toto",7000);
+
 
   //5. Principe
   /*Nous avons utiliser 100% la documentation
@@ -35,7 +36,14 @@ void setup() {
     personnalisable pour tout besoin et surtout tres rapide */
 
 }
+  //unsigned long startTime = millis();
 
+ 
 void loop() {
-  readByteSerial2();  //Pour les commandes AT
+ readByteSerial2();  //Pour les commandes AT
+ /*
+  Serial.println("startTime : ");
+  Serial.println(startTime);
+  Serial.println("millis() : ");
+  Serial.println(millis());*/
 }
