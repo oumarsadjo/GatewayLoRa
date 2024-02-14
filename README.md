@@ -74,7 +74,10 @@ Pour cette etape de Design, nous avons choisi l'ensemble des composants et voir 
 Le design a ete valide par notre professeur. Nous avons constitue le BOM et l'envoye au professeur pour commander les composants.
 Nous allons maintenant passer a l'etape de routage.
 
+Lors de la seance du 13 Fevrier 2024, nous avons apporter des corrections au schematic et ajouter le convertisseur TXB0108PWR
+pour connecter les tensions de +1V8.
+
 _8. ETAPES ROUTAGE
 --------------------
 Comme le design a ete valide et les materiels sont disponible, nous allons maintenant continuer le routage...
-A continuer lors de la prochaine seance : _Mardi 13 Fevrier 2024_
+A continuer lors de la prochaine seance : _Mardi 18 Fevrier 2024_
