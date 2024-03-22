@@ -1,7 +1,7 @@
-Heure: 3
-Statut: 1
-Latitude: 0.09
-Longitude: 0.18
-Vitesse: 33.0 nœuds
-Route: 19.0 degrés
-Date: 55
+Heure: 064036.289
+Statut: A
+Latitude: 48.365375
+Longitude: 7.409373
+Vitesse: 3.2 nœuds
+Route: 200.2 degrés
+Date: 120222

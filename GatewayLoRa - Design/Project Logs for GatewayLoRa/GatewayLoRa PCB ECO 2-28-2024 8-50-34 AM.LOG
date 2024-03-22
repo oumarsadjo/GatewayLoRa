@@ -1,0 +1,5 @@
+Change Component Comment : Designator=J8 Old Comment=TSW-101-07-L-S New Comment=TP4
+Change Component Comment : Designator=J9 Old Comment=TSW-101-07-L-S New Comment=TP5
+Change Component Comment : Designator=100n Old Comment=val New Comment=100n
+Change Component Designator: OldDesignator=100n NewDesignator=C18
+Change Net Name : Old Net Name=Net100n_2 New Net Name=NetC3_2

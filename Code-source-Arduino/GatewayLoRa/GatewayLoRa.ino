@@ -4,8 +4,9 @@ void setup() {
   Serial.begin(9600);
   //DEMONSTRATION
   //1. Envoi et reception de message
-  //sendMessage("+33605537064","Message envoye par Polytech");
-  //readMessage();
+  //sendMessage("+33605537064","Test");
+  ///initHttpGMS();
+  readMessage();
   
   //2. Acceder et parser un sie web par connexion WiFi --> GET/POST
   //sendRequestByWiFi("Network","unefoisoui@1","http://rucher.polytech.unice.fr/~cpeter/exemple.html");
@@ -13,7 +14,7 @@ void setup() {
       const char * ssid
       const char * password
       const String urlServer */
-  //sendCommand("AT");
+  //sendCommand("AT+CMGF=1");
   //3. Acceder et parser un sie web par LTE --> GET/POST
   //sendRequestByGSM("http://rucher.polytech.unice.fr/~cpeter/exemple.html");
   /*Parameters:
@@ -24,9 +25,9 @@ void setup() {
   //satellite_GPS();
   
   
-  String a = "AT+CGNSPWR=1";// Activation de la communication
-  String b = "AT+CGNSINF"; // Fixation des donnees des Satellites*/
-  sendCommand(a,"toto",7000);
+  //String a = "AT+CGNSPWR=1";// Activation de la communication
+  //String b = "AT+CGNSINF"; // Fixation des donnees des Satellites*/
+  //sendCommand(a,"toto",7000);
 
 
   //5. Principe
@@ -41,9 +42,4 @@ void setup() {
  
 void loop() {
  readByteSerial2();  //Pour les commandes AT
- /*
-  Serial.println("startTime : ");
-  Serial.println(startTime);
-  Serial.println("millis() : ");
-  Serial.println(millis());*/
 }

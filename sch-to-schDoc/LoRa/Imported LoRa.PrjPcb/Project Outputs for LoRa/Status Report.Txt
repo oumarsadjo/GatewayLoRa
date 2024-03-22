@@ -1,0 +1,10 @@
+Output: Telesis Netlist
+Type  : TelesisNetlist
+From  : Project [LoRa.PrjPcb]
+   Generated File[LoRa.NET]
+
+
+Files Generated   : 1
+Documents Printed : 0
+
+Finished Output Generation At 11:25:09 AM On 2/16/2024

@@ -39,7 +39,6 @@ String sendCommand(String myCommand, long baudSerial, long baudSerial2, const ch
   Serial2.begin(baudSerial2, SERIAL_8N1, TX, RX);
 
   Serial.println("Starting...");
-  Serial.print("myCommand ");Serial.println(myCommand);
   Serial2.println(myCommand);
 
   unsigned long startTime = millis();
@@ -47,14 +46,13 @@ String sendCommand(String myCommand, long baudSerial, long baudSerial2, const ch
   while (millis() - startTime < timeout) {
     if (Serial2.available()) {
       response = Serial2.readString();
-      Serial.print("response ---"); Serial.println(response);Serial.print("---");
       if (response.indexOf(expectedResponse) != -1) {
-        Serial.println("j ai trouve OK");
+        Serial.print("Response :"); Serial.println(response);
         return response;  // Réponse attendue trouvée
       }
     }
   }
-  Serial.println("timeout");
+ Serial.print("Response NOK :"); Serial.println(response);
   return response;  // La réponse attendue n'a pas été trouvée dans le délai imparti
 }
 
